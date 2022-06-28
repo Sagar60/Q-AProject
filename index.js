@@ -12,7 +12,7 @@ app.get('/', (_, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(uploadRouter);
-
-app.listen(8080, () => {
-  console.log('Form running on port 8080');
+const port = process.env.PORT || 8080
+app.listen(port, () => {
+  console.log('Form running on port '+ port);
 });
