@@ -2,8 +2,10 @@
 
 const express = require('express');
 const uploadRouter = require('./router');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 app.get('/', (_, res) => {
   res.sendFile(`${__dirname}/index.html`);
