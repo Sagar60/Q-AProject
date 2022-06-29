@@ -101,10 +101,10 @@ uploadRouter.post('/upload', multer.any(), async (req, res, next) => {
   try {
 	  //console.log(req.file,req.files[0]);
     if (!req.files[0]) {
-		console.log("error comes");
+		console.log("error coming on file retrieve");
       res.status(400).json({
 		  "status": 400,
-		  "message": "Files not found"
+		  "message": "File not found"
 	  });
       return;
     }
@@ -124,11 +124,24 @@ uploadRouter.post('/upload', multer.any(), async (req, res, next) => {
     // deleteFile(req.files[0].path);
     res.status(200).json({
 		"status": 200,
-		"id": response.data['id']
+		"id": response.data['id'],
+		"message": "File uploaded"
 		});
   } catch (err) {
     console.log(err);
   }
+});
+
+
+uploadRouter.get('/status',(req,res,next)=>{
+	try{
+		console.log('API status: API working good',req.id || req.params.id);
+		res.status(200).json({
+			"message": "API working fine\nyou can start your uploading"
+		})
+	}catch(err){
+		console.log('API status:' + err);
+	}
 });
 
 module.exports = uploadRouter;
