@@ -7,45 +7,8 @@ const { google } = require('googleapis');
 const fs = require('fs');
 
 const uploadRouter = express.Router();
-//const upload = multer();
 
 const Multer = require('multer');
-// import Multer from "multer";
-
-// const uploadFile = async (fileObject) => {
-  // const bufferStream = new stream.PassThrough();
-  // bufferStream.end(fileObject.buffer);
-  // //console.log(bufferStream)
-  // const { data } = await google.drive({ version: 'v3' }).files.create({
-    // media: {
-      // mimeType: fileObject.mimetype,
-      // body: bufferStream,
-    // },
-    // requestBody: {
-      // name: fileObject.originalname,
-      // parents: ['17HtmIgPahxaBxkyyNMUFiKExCMg4FJ1y'],
-    // },
-    // fields: 'id',
-  // });
-  // console.log(`Uploaded file ${data.name} ${data.id}`);
-// };
-
-// uploadRouter.post('/upload', upload.any(), async (req, res) => {
-	// console.log('start uploading');
-  // try {
-    // const { body, files } = req;
-	// //console.log(body,files);
-    // for (let f = 0; f < files.length; f += 1) {
-		// console.log(files[f]);
-      // await uploadFile(files[f]);
-    // }
-
-    // console.log(body);
-    // res.status(200).send('Form Submitted');
-  // } catch (f) {
-    // res.send(f.message);
-  // }
-// });
 
 
 const multer = Multer({
@@ -102,8 +65,8 @@ uploadRouter.post('/upload', multer.any(), async (req, res, next) => {
 	  //console.log(req.file,req.files[0]);
     if (!req.files[0]) {
 		console.log("error coming on file retrieve");
-      res.status(400).json({
-		  "status": 400,
+      res.status(404).json({
+		  "status": 404,
 		  "message": "File not found"
 	  });
       return;
