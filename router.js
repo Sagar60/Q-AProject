@@ -132,7 +132,7 @@ uploadRouter.post('/uploadUserImage', multer.any(), async (req, res, next) => {
 
 uploadRouter.get('/status',(req,res,next)=>{
 	try{
-		console.log('API status: API working good',req.id || req.params.id);
+		console.log('API status: API working good' );
 		res.status(200).json({
 			"message": "API working fine\nyou can start your uploading"
 		})
