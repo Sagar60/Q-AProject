@@ -141,4 +141,17 @@ uploadRouter.get('/status',(req,res,next)=>{
 	}
 });
 
+
+// sayantani Slack api project
+uploadRouter.post('/postRequest',(req,res,next)=>{
+	try{
+		console.log(req.body);
+		res.status(200).json({
+			"message": "API working fine\nyou can start your uploading"
+		})
+	}catch(err){
+		console.log('API status:' + err);
+	}
+})
+
 module.exports = uploadRouter;
