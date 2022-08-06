@@ -146,9 +146,24 @@ uploadRouter.get('/status',(req,res,next)=>{
 uploadRouter.post('/postRequest',(req,res,next)=>{
 	try{
 		console.log(req.body);
-		res.status(200).json({
-			"message": "API working fine\nyou can start your uploading"
-		})
+		// url body request
+		let type = req.body.type;
+		let token = req.body.token;
+		let challenge = req.body.challenge;
+		
+		if(type == "url_verification"){
+			console.log("Passed");
+			res.status(200).json({
+				"challenge": challenge
+			});
+			
+		}else{
+			console.log("Failed");
+			res.status(200).json({
+				"challenge": "Failed"
+			});
+		}
+		
 	}catch(err){
 		console.log('API status:' + err);
 	}
