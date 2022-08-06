@@ -167,6 +167,36 @@ uploadRouter.post('/postRequest',(req,res,next)=>{
 	}catch(err){
 		console.log('API status:' + err);
 	}
-})
+});
+
+// sayantani Slack api project for mine
+uploadRouter.post('/postRequestBySagar',(req,res,next)=>{
+	try{
+		console.log(req.body);
+		// url body request
+		let type = req.body.type;
+		let token = req.body.token;
+		let challenge = req.body.challenge;
+		
+		
+		
+		if(type == "url_verification"){
+			console.log("Passed");
+			res.status(200).json({
+				"challenge": challenge
+			});
+			
+		}else{
+			console.log("Failed");
+			res.status(200).json({
+				"challenge": "Failed"
+			});
+		}
+		
+	}catch(err){
+		console.log('API status:' + err);
+	}
+});
+
 
 module.exports = uploadRouter;
